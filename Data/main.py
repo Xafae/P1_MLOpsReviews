@@ -4,7 +4,7 @@ import pandas as pd
 app = FastAPI()
 
 #Loading csv files already cleaned and modified
-df_streaming_services = pd.read_csv(r"*\MLOpsReviews\streaming_services_and_ratings.csv")
+df_streaming_services = pd.read_csv(r".\MLOpsReviews\streaming_services_and_ratings.csv")
 
 #Function to find the longest movie
 @app.get("/max_duration")
@@ -31,8 +31,6 @@ async def get_max_duration(year: int = None, platform: str = None, duration_type
 #Function to find the movie with filters of score and year
 @app.get("/score_count")
 async def get_score_count(platform: str = None, scored: float = None, year: int = None):
-    #A movie/serie could have more than one rating, therefore I'm calculating a mean before moving forward.
-
     #Filtering
     filtered_df = df_streaming_services[(df_streaming_services["show_id"].str.startswith(platform[0].lower())) &
                             (df_streaming_services["score"] > scored) &
