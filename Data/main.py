@@ -4,7 +4,7 @@ import pandas as pd
 app = FastAPI()
 
 #Loading csv files already cleaned and modified
-df_streaming_services = pd.read_csv(r"MLOpsReviews\streaming_services_and_ratings")
+df_streaming_services = pd.read_csv(r"MLOpsReviews\streaming_services_and_ratings.csv")
 
 #Function to find the longest movie
 @app.get("/max_duration")
